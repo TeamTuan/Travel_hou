@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
-
+	<base href="<?php echo site_url();?>">
 	<style type="text/css">
 
 	::selection{ background-color: #E13300; color: white; }
@@ -83,6 +83,5 @@
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>
-
 </body>
 </html>
