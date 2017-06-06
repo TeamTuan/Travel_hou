@@ -7,9 +7,11 @@ class Blog extends CI_Controller {
     }
     public function index()
     {
-        
+
         header('Access-Control-Allow-Origin:*');
+        
         $result=$this->blog_model->get_all_blog();
+
         echo json_encode($result);
         
     }
