@@ -13,16 +13,10 @@ class User extends CI_Controller {
         $password=$this->input->get("password");
         $result=$this->user_model->check_login($tel,$password);
         if($result){
-            $newdata = array(
-                'login'  => true
-            );
-            $this->session->set_userdata($newdata);
-            $obj["login"]=$this->session->userdata('login');
-            $obj["user_id"]=$result->user_id;
-            echo json_encode($obj);
-        }else{
-            echo 'failed';
+            $id=$result->user_id;
+            echo json_encode($id);
         }
+
 
     }
     public function select_user_by_id(){
