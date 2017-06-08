@@ -32,8 +32,8 @@ class User extends CI_Controller {
     public function save_introduction(){
         header('Access-Control-Allow-Origin:*');
         $id=$this->input->get('id');
-        $value=urldecode($this->input->get('value'));
-        $result=$this->user_model->save_introduction($id,$value);
+        $value=$this->input->get('value');
+        $result=$this->user_model->save_introduction($id,urlencode($value));
         if($result){
             echo 'success';
         }
