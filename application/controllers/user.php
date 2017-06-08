@@ -1,5 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+header("Content-type: text/html;charset=utf-8");
 class User extends CI_Controller {
     //chen
     public function __construct(){
@@ -30,12 +31,12 @@ class User extends CI_Controller {
     }
     //chen
     public function save_introduction(){
-        header('Access-Control-Allow-Origin:*');
+
         $id=$this->input->get('id');
         $value=$this->input->get('value');
-        $result=$this->user_model->save_introduction($id,urlencode($value));
+        $result=$this->user_model->save_introduction($id,$value);
         if($result){
-            echo 'success';
+            echo $value;
         }
         else{
             echo 'failed';
