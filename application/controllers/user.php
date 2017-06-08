@@ -1,10 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class User extends CI_Controller {
+    //chen
     public function __construct(){
         parent::__construct();
         $this->load->model('user_model');
     }
+    //chen
     public function index(){
 
         header('Access-Control-Allow-Origin:*');
@@ -19,6 +21,7 @@ class User extends CI_Controller {
 
 
     }
+    //chen
     public function select_user_by_id(){
         header('Access-Control-Allow-Origin:*');
         $id=$this->input->get('id');
