@@ -14,4 +14,10 @@ class User_model extends CI_Model
         $query=$this->db->query($sql);
         return $query->row();
     }
+    //chen
+    public function save_introduction($id,$value){
+        $sql="update t_user set construction='$value' where user_id='$id'";
+        $query=$this->db->query($sql);
+        return $query;
+    }
 }

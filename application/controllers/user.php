@@ -28,4 +28,17 @@ class User extends CI_Controller {
         $result=$this->user_model->select_user_by_id($id);
         echo json_encode($result);
     }
+    //chen
+    public function save_introduction(){
+        header('Access-Control-Allow-Origin:*');
+        $id=$this->input->get('id');
+        $value=urldecode($this->input->get('value'));
+        $result=$this->user_model->save_introduction($id,$value);
+        if($result){
+            echo 'success';
+        }
+        else{
+            echo 'failed';
+        }
+    }
 }
