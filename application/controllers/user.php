@@ -1,5 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+header("Content-type: text/html;charset=utf-8");
 class User extends CI_Controller {
     //chen
     public function __construct(){
@@ -30,12 +31,58 @@ class User extends CI_Controller {
     }
     //chen
     public function save_introduction(){
-        header('Access-Control-Allow-Origin:*');
+
         $id=$this->input->get('id');
-        $value=urldecode($this->input->get('value'));
+        $value=$this->input->get('value');
         $result=$this->user_model->save_introduction($id,$value);
         if($result){
-            echo 'success';
+            echo $value;
+        }
+        else{
+            echo 'failed';
+        }
+    }
+    public function save_name(){
+
+        $id=$this->input->get('id');
+        $value=$this->input->get('value');
+        $result=$this->user_model->save_name($id,$value);
+        if($result){
+            echo $value;
+        }
+        else{
+            echo 'failed';
+        }
+    }
+    public function save_sex(){
+
+        $id=$this->input->get('id');
+        $value=$this->input->get('value');
+        $result=$this->user_model->save_sex($id,$value);
+        if($result){
+            echo $value;
+        }
+        else{
+            echo 'failed';
+        }
+    }
+    public function check_tel(){
+
+        $value=$this->input->get('value');
+        $result=$this->user_model->check_tel($value);
+        if($result){
+            echo "success";
+        }
+        else{
+            echo 'failed';
+        }
+    }
+    public function insert_user(){
+        $tel=$this->input->get('tel');
+        $password=$this->input->get('password');
+        $result=$this->user_model->insert_user($tel,$password);
+        if($result){
+            echo "success";
         }
         else{
             echo 'failed';
