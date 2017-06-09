@@ -5,6 +5,7 @@ class Blog extends CI_Controller {
         parent::__construct();
         $this->load->model('blog_model');
     }
+    //ma
     public function index()
     {
         header('Access-Control-Allow-Origin:*');
@@ -16,52 +17,56 @@ class Blog extends CI_Controller {
     //zheng
     public function travel(){
         header('Access-Control-Allow-Origin:*');
-        $result= $this->blog_model->get_travel();
+        $login_id= $this->input->get('login_id');
+        $result= $this->blog_model->get_travel($login_id);
         echo json_encode($result);
     }
 
+
+
+
     public function save_blog(){
-        header('Access-Control-Allow-Origin:*');
+
         $id=$this->input->get('id');
-        $imgfile = $_FILES['img'];
-        $imgname = $imgfile['name'];
-        $imgarr = explode('.', $imgname);
-        $lastvalue = count($imgarr) - 1;
-        $houname = $imgarr[$lastvalue];
-        $flag = false;
-        $allowed_types = array('jpg', 'png', 'ico', 'JPG');
-        for ($i = 0; $i < count($allowed_types); $i++) {
-            if ($allowed_types[$i] == $houname) {
-                $flag = true;
-            }
+        $blog_title=$this->input->get('blog_title');
+        $blog_content=$this->input->get('blog_content');
+        $result=$this->blog_model->save_blog($id,$blog_title,$blog_content);
+        if($result){
+            echo 'success';
         }
-
-        if ($flag == false) {
-            echo "<script>alert('上传文件后缀名非法');</script>";
-            redirect("http://127.0.0.1/Travel_hou/blog/index");
-        } else {
-            $filename = date("YmdHis") . '_' . rand(10000, 99999) . '.' . $houname;
-            $path = getcwd() . '/uploads/' . $filename;
-            $upload_flag = move_uploaded_file($imgfile['tmp_name'], $path);
-            /*图片上传的时候，先存在C/XAMPP/TMP文件夹里的缓存中,只有调用方法才会
-            移动到项目的目标文件夹，此方法是PHP原生提供的方法，返回移动的结果bool类型*/
-            if ($upload_flag) {
-                $img = 'uploads/' . $filename;
-                $blog_title=urldecode($this->input->get('blog_title'));
-
-                $blog_content=urldecode($this->input->get('blog_content'));
-
-
-                $this->load->model('blog_model');
-                $query=$this->blog_model->save_blog($blog_title, $blog_content, $img);
-                if ($query) {
-                    redirect("http://127.0.0.1/Travel_hou/blog/index");
-                }
-            } else {
-                echo "请上传小于2M的图片";
-            }
+        else{
+            echo 'failed';
         }
+    }
 
+    public function publish_blog(){
 
+        $id=$this->input->get('id');
+        $result=$this->blog_model->publish_notes($id);
+        echo json_encode($result);
+    }
+    public function update_blog(){
+
+        $id=$this->input->get('id');
+        $blog_title=$this->input->get('blog_title');
+        $blog_content=$this->input->get('blog_content');
+        $result=$this->blog_model->update_blog($id,$blog_title,$blog_content);
+        if($result){
+            echo 'success';
+        }
+        else{
+            echo 'failed';
+        }
+    }
+    public function delete_blog(){
+
+        $id=$this->input->get('id');
+        $result=$this->blog_model->delete_blog($id);
+        if($result){
+            echo 'success';
+        }
+        else{
+            echo 'failed';
+        }
     }
 }
