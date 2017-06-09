@@ -20,4 +20,24 @@ class User_model extends CI_Model
         $query=$this->db->query($sql);
         return $query;
     }
+    public function save_name($id,$value){
+        $sql="update t_user set name='$value' where user_id='$id'";
+        $query=$this->db->query($sql);
+        return $query;
+    }
+    public function save_sex($id,$value){
+        $sql="update t_user set sex='$value' where user_id='$id'";
+        $query=$this->db->query($sql);
+        return $query;
+    }
+    public function check_tel($value){
+        $sql="select * from t_user where tel='$value'";
+        $query=$this->db->query($sql);
+        return $query->row();
+    }
+    public function insert_user($tel,$password){
+        $sql="insert into t_user(user_id,tel,password) values(null,'$tel','$password')";
+        $query=$this->db->query($sql);
+        return $query;
+    }
 }

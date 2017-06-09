@@ -42,4 +42,50 @@ class User extends CI_Controller {
             echo 'failed';
         }
     }
+    public function save_name(){
+
+        $id=$this->input->get('id');
+        $value=$this->input->get('value');
+        $result=$this->user_model->save_name($id,$value);
+        if($result){
+            echo $value;
+        }
+        else{
+            echo 'failed';
+        }
+    }
+    public function save_sex(){
+
+        $id=$this->input->get('id');
+        $value=$this->input->get('value');
+        $result=$this->user_model->save_sex($id,$value);
+        if($result){
+            echo $value;
+        }
+        else{
+            echo 'failed';
+        }
+    }
+    public function check_tel(){
+
+        $value=$this->input->get('value');
+        $result=$this->user_model->check_tel($value);
+        if($result){
+            echo "success";
+        }
+        else{
+            echo 'failed';
+        }
+    }
+    public function insert_user(){
+        $tel=$this->input->get('tel');
+        $password=$this->input->get('password');
+        $result=$this->user_model->insert_user($tel,$password);
+        if($result){
+            echo "success";
+        }
+        else{
+            echo 'failed';
+        }
+    }
 }
