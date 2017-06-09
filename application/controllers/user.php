@@ -42,6 +42,7 @@ class User extends CI_Controller {
             echo 'failed';
         }
     }
+    //chen
     public function save_name(){
 
         $id=$this->input->get('id');
@@ -54,6 +55,7 @@ class User extends CI_Controller {
             echo 'failed';
         }
     }
+    //chen
     public function save_sex(){
 
         $id=$this->input->get('id');
@@ -66,6 +68,7 @@ class User extends CI_Controller {
             echo 'failed';
         }
     }
+    //chen
     public function check_tel(){
 
         $value=$this->input->get('value');
@@ -77,6 +80,7 @@ class User extends CI_Controller {
             echo 'failed';
         }
     }
+    //chen
     public function insert_user(){
         $tel=$this->input->get('tel');
         $password=$this->input->get('password');
