@@ -9,7 +9,8 @@ class Blog extends CI_Controller {
     public function index()
     {
         header('Access-Control-Allow-Origin:*');
-        $result=$this->blog_model->get_all_blog();
+        $pages=$this->input->get("pages");
+        $result=$this->blog_model->get_all_blog($pages);
 
         echo json_encode($result);
         
@@ -26,7 +27,6 @@ class Blog extends CI_Controller {
 
 
     public function save_blog(){
-
         $id=$this->input->get('id');
         $blog_title=$this->input->get('blog_title');
         $blog_content=$this->input->get('blog_content');

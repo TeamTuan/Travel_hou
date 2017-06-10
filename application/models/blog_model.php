@@ -2,8 +2,8 @@
 
 class Blog_model extends CI_Model
 {
-    public function get_all_blog(){
-        $sql = "select * from t_blog";
+    public function get_all_blog($pages){
+        $sql = "select * from t_blog limit $pages,3";
         $query = $this->db->query($sql);
         return $query->result();
     }
