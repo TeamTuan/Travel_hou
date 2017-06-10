@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-header("Content-type: text/html;charset=utf-8");
+//header("Content-type: text/html;charset=utf-8");
 class User extends CI_Controller {
     //chen
     public function __construct(){
@@ -17,7 +17,9 @@ class User extends CI_Controller {
         $result=$this->user_model->check_login($tel,$password);
         if($result){
             $id=$result->user_id;
-            echo json_encode($id);
+            echo $id;
+        }else{
+            echo "failed";
         }
 
 
@@ -36,7 +38,7 @@ class User extends CI_Controller {
         $value=$this->input->get('value');
         $result=$this->user_model->save_introduction($id,$value);
         if($result){
-            echo $value;
+            echo "success";
         }
         else{
             echo 'failed';
@@ -91,5 +93,14 @@ class User extends CI_Controller {
         else{
             echo 'failed';
         }
+    }
+    public function select_name_by_id(){
+        $from_id=$this->input->get('from_id');
+        $to_id=$this->input->get('to_id');
+        $from_name=$this->user_model->select_name_by_id($from_id);
+        $to_name=$this->user_model->select_name_by_id($to_id);
+        $arr["from_name"]=$from_name;
+        $arr["to_name"]=$to_name;
+        echo json_encode($arr);
     }
 }

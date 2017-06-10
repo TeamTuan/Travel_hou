@@ -44,4 +44,9 @@ class User_model extends CI_Model
         $query=$this->db->query($sql);
         return $query;
     }
+    public function select_name_by_id($id){
+        $sql="select * from t_user where user_id='$id'";
+        $query=$this->db->query($sql);
+        return $query->row();
+    }
 }

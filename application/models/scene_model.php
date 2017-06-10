@@ -12,5 +12,14 @@ class Scene_model extends CI_Model
         $query = $this->db->query($sql);
         return $query->row();
     }
-
+    public function select_comment_by_scene_id($id){
+        $sql = "select * from t_comment,t_user where t_comment.scene_id='$id' and t_comment.user_id=t_user.user_id";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+    public function select_reply_by_comment_id($id){
+        $sql = "select * from t_reply where comment_id='$id'";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 }
