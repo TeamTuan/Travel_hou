@@ -3,7 +3,7 @@
 class Blog_model extends CI_Model
 {
     public function get_all_blog($pages){
-        $sql = "select * from t_blog limit $pages,3";
+        $sql = "select * from t_blog,t_user where t_blog.user_id=t_user.user_id limit $pages,3";
         $query = $this->db->query($sql);
         return $query->result();
     }
